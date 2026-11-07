@@ -20,15 +20,16 @@ updated: 2026-10-23
 
 ---
 
-## Official Practice Assessment
+## Official Practice Assessment 
 
 - [AZ-305 Official Practice Assessment — Microsoft Learn](https://learn.microsoft.com/en-us/credentials/certifications/exams/az-305/practice/assessment?assessment-type=practice&assessmentId=60)
   - **Free.** Use early to benchmark where you are, then again post-study to confirm readiness.
   - Unlimited retakes. Questions rotate.
+  - I did couple of practice run with this assessment a week before exam.
 
 ---
 
-## Practice Test Providers (Tiered)
+## Practice Test Providers (I did not use this personally)
 
 ### 🔴 Phase 1: Throughout Study (Topic Reinforcement)
 
@@ -77,13 +78,6 @@ updated: 2026-10-23
 > [!TIP]
 > AZ-305 is not about memorising services. Every question tests a **design decision** or **trade-off**. When reviewing wrong answers, always ask: *why is this the better architecture for the stated constraint?*
 
-| Phase | Activity | Target Score |
-|-------|----------|-------------|
-| Week 1 | Microsoft Learn official assessment (baseline) | No target — diagnostic |
-| Weeks 1–5 | Tutorials Dojo section-based tests per domain | ≥75% per section |
-| Week 6 | MeasureUp full timed mock exams | ≥80–85% consistently |
-| Final Sprint | Official MS practice assessment again | ≥85%+ |
----
 
 ## 🔗 Quick Navigation
 - **Study Guide & Decision Trees:** [AZ-305 Master Study Plan](../305-study-plan.md)

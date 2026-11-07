@@ -65,6 +65,7 @@ These are the **exact resources** that map to every week in this plan:
 ### ✍️ Companion Architecture Notes
 | Note File | Topic | Scope |
 |---|---|---|
+| [A - Introduction and Basic Concepts.md](A%20-%20Introduction%20and%20Basic%20Concepts.md) | Foundations — HA, Hierarchy, Locks & Compute Intro | RTO/RPO, AvSets/AvZones, Region Pairs, Management Groups, Tags, Resource Locks |
 | [Identity - Authentication.md](Identity%20-%20Authentication.md) | Domain 1.1 — Auth & Entra ID | B2B/B2C, Managed Identities, CA, PIM |
 | [Monitoring - Solutions.md](Monitoring%20-%20Solutions.md) | Domain 1.3 — Azure Monitor & Log Analytics | Workspaces, AMA, DCR, App Insights |
 | [Storage3 - relational database.md](Storage3%20-%20relational%20database.md) | Domain 2.2 — Relational DB & SQL tiers | SQL DB, MI, Hyperscale, Failover Groups |
@@ -116,6 +117,7 @@ Apply this exact sequence for **every topic block** in the weekly schedule below
 - [ ] Key Reference: [CAF Landing Zones](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/)
 - [ ] Key Reference: [Resource naming & abbreviations](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations)
 - [ ] Key Reference: [Resource move support](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-support-resources)
+- [ ] Vault Note: [A - Introduction and Basic Concepts.md](A%20-%20Introduction%20and%20Basic%20Concepts.md) · [Governance - Azure Policy.md](Governance%20-%20Azure%20Policy.md) · [Identity - Governance.md](Identity%20-%20Governance.md)
 
 **1.3 Design a Solution for Logging and Monitoring**
 - [ ] Azure Monitor — Metrics vs. Logs, Activity Log vs. Resource Logs, Diagnostic Settings
@@ -191,6 +193,7 @@ Apply this exact sequence for **every topic block** in the weekly schedule below
 - [ ] Multi-region active-active vs. active-passive patterns for web / app / database tiers
 - [ ] Azure Front Door as global HA for HTTP workloads (automatic failover)
 - [ ] SLA calculation — composite SLA = product of individual component SLAs
+- [ ] Vault Note: [A - Introduction and Basic Concepts.md](A%20-%20Introduction%20and%20Basic%20Concepts.md) · [Compute1 - Virtual Machines.md](Compute1%20-%20Virtual%20Machines.md)
 
 ---
 
@@ -508,7 +511,7 @@ Single-region writes only            Best for e-commerce, shopping carts        
 ## 🔗 7. Quick Navigation
 - **Study Guide Index:** [[mscerts/az-305/README|AZ-305 Overview (README)]] · [[mscerts/mscert-readme|Microsoft Certifications Index]]
 - **Quiz Tracker & Error Log:** [[mscerts/az-305/quiz/az-305-quiz|AZ-305 Quiz & Mock Tracker]]
-- **Foundations & WAF:** [[mscerts/az-305/A - Introduction and Basic Concepts|A - Introduction and Basic Concepts]] · [[mscerts/az-305/Azure Well-Architected Framework|Azure Well-Architected Framework]] · [[mscerts/az-305/Study Links|Study Links]]
+- **Foundations & WAF:** [[mscerts/az-305/A - Introduction and Basic Concepts|A - Introduction and Basic Concepts]] · [[mscerts/az-305/Azure Well-Architected Framework|Azure Well-Architected Framework]]
 - **Domain 1 (Identity, Governance & Monitoring):** [[mscerts/az-305/Identity - Authentication|Identity - Authentication]] · [[mscerts/az-305/Identity - Conditional Access|Identity - Conditional Access]] · [[mscerts/az-305/Identity - Entra Domain Services|Identity - Entra Domain Services]] · [[mscerts/az-305/Identity - Azure Key Vault|Identity - Azure Key Vault]] · [[mscerts/az-305/Identity - Governance|Identity - Governance]] · [[mscerts/az-305/Governance - Azure Policy|Governance - Azure Policy]] · [[mscerts/az-305/Monitoring - Solutions|Monitoring - Solutions]]
 - **Domain 2 (Data Storage):** [[mscerts/az-305/Storage1 - introduction|Storage1 - Introduction]] · [[mscerts/az-305/Storage2 - non relational data|Storage2 - Non-Relational Data]] · [[mscerts/az-305/Storage3 - relational database|Storage3 - Relational Database]] · [[mscerts/az-305/Storage4 - non relational database (nosql)|Storage4 - NoSQL]] · [[mscerts/az-305/Storage5 - data integration|Storage5 - Data Integration]]
 - **Domain 3 (Business Continuity):** [[mscerts/az-305/Business Cont - Backup & recovery|Business Cont - Backup & Recovery]]

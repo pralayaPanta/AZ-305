@@ -4,6 +4,7 @@ tags:
   - az-305
 title: Storage - non relational data
 author: Pralaya Panta
+updated: 2026-10-23
 ---
 
 
@@ -12,26 +13,30 @@ author: Pralaya Panta
 
 ## Choosing data storage
 
-- **Consider Azure Blob Storage**. 
-	- Store vast amounts of unstructured data by using Azure Blob Storage. 
+- Consider Azure Blob Storage.
+	- Store vast amounts of unstructured data by using Azure Blob Storage.
 	- Blob Storage is often used for images and multimedia files.
-    
-- **Consider Azure Files**. 
-	- Provide fully managed file shares in the cloud with Azure Files. 
+
+- Consider Azure Files.
+	- Provide fully managed file shares in the cloud with Azure Files.
 	- This storage data is accessible via the industry standard Server Message Block (SMB) protocol, Network File System (NFS) protocol, and the Azure Files REST API.
-    
-- **Consider Azure managed disks**. 
-	- Support Azure virtual machines by using Azure managed disks. 
-	- These disks are block-level storage volumes managed by Azure. 
+
+- Consider Azure managed disks.
+	- Support Azure virtual machines by using Azure managed disks.
+	- These disks are block-level storage volumes managed by Azure.
 	- Managed disks perform like physical disks in an on-premises server, but in a virtual environment.
-    
-- **Consider Azure Queue Storage**. 
-	- Use Azure Queue Storage to store large numbers of messages. 
+
+- Consider Azure Queue Storage.
+	- Use Azure Queue Storage to store large numbers of messages.
 	- Queue Storage is commonly used to create a backlog of work to process asynchronously.
 
 
 ## Azure Blob Storage
-- blob stands for Binary Large Object. 
+- blob stands for Binary Large Object.
+- 3 Blob Types (chosen at blob creation and cannot be changed afterward):
+	- Block Blobs: store text and binary data (documents, media files, backups) composed of individually managed blocks; up to ~190.7 TiB per blob (`50,000 blocks x 4,000 MiB`)
+	- Append Blobs: optimized exclusively for append operations (new blocks are added only to the end of the blob; updating or deleting existing blocks is not supported); up to ~195 GiB (`50,000 blocks x 4 MiB`); ideal for application logging, audit trails, and telemetry
+	- Page Blobs: collection of 512-byte pages up to 8 TiB optimized for frequent random read/write operations; serves as the underlying storage format for Azure VHD disks and SQL Server data files stored directly on Blob Storage
 - consider while implementing
 	- blob access tier
 	- immutable storage need
@@ -44,40 +49,40 @@ author: Pralaya Panta
 	- by default new storage accounts are created in hot tier
 	- lowest access costs, but higher storage costs
 2. Cool
-	-  availability 2 nines & 3 nines (RA-GRS)
-	-  latency time to first byte >> ms
+	- availability 2 nines & 3 nines (RA-GRS)
+	- latency time to first byte >> ms
 	- optimised for storing large amounts of infrequently used data
 	- minimum storage duration is 30 days
 	- use case - short term backup & disaster recovery datasets or older media
 	- higher access costs than hot tier; lower storage costs
 3. Cold
-	-  availability 2 nines & 3 nines (RA-GRS)
-	-  latency time to first byte >> ms
+	- availability 2 nines & 3 nines (RA-GRS)
+	- latency time to first byte >> ms
 	- optimised for storing large amounts of infrequently used data
-	- intended for data that can remain in for at least 90 days	
+	- intended for data that can remain in for at least 90 days
 4. Archive
-	- offline tier (**0% read availability SLA** while in Archive until rehydrated to Hot or Cool)
+	- offline tier (0% read availability SLA while in Archive until rehydrated to Hot or Cool)
 	- latency time to first byte >> hours
 	- offline tier for data that can tolerate several hours of retrieval latency
 	- data must remain in the tier for at least 180 days or be subject to an early deletion charge
 	- includes secondary backups, original raw data, and legally required compliance information
 	- most cost-effective option for storing data
 	- accessing data is more expensive than any tier
-	- **Blob Rehydration (Archive -> Hot or Cool):**
-		- **Standard Priority:** takes **up to 15 hours**
-		- **High Priority:** takes **under 1 hour** for blobs `< 10 GB` (higher cost)
-		- **Recommended Method:** use **`Copy Blob`** to create a new blob in the Hot or Cool tier rather than changing the tier in-place (preserves the original archived blob and avoids early deletion penalties)
+	- Blob Rehydration (Archive -> Hot or Cool):
+		- Standard Priority: takes up to 15 hours
+		- High Priority: takes under 1 hour for blobs `< 10 GB` (higher cost)
+		- Recommended Method: use `Copy Blob` to create a new blob in the Hot or Cool tier rather than changing the tier in-place (preserves the original archived blob and avoids early deletion penalties)
 
 ### Blob Lifecycle Management & Reserved Capacity
-- **Lifecycle Management Policies:**
+- Lifecycle Management Policies:
 	- JSON rules that automatically transition blobs to cooler tiers (`Hot -> Cool -> Cold -> Archive`) or delete blobs/versions/snapshots at the end of their lifecycle
-	- **Rule Conditions:**
+	- Rule Conditions:
 		- `daysAfterModificationGreaterThan` (days since the blob was last written/modified)
 		- `daysAfterCreationGreaterThan` (days since the blob or version was created)
-		- `daysAfterLastAccessTimeGreaterThan` (days since the blob was last read — **requires enabling Access Time Tracking**; can also automatically move a blob from `Cool` back to `Hot` on read via `autoTierToHotFromCool`)
-	- **Rule Filters:** scope rules by `blobTypes` (`blockBlob`, `appendBlob`) and `prefixMatch` (e.g., `container1/logs/2025`)
-- **Azure Storage Reserved Capacity:**
-	- 1-year or 3-year commitment for **100 TB** or **1 PB** blocks of Block Blob / ADLS Gen2 storage to significantly reduce storage capacity costs
+		- `daysAfterLastAccessTimeGreaterThan` (days since the blob was last read — requires enabling Access Time Tracking; can also automatically move a blob from `Cool` back to `Hot` on read via `autoTierToHotFromCool`)
+	- Rule Filters: scope rules by `blobTypes` (`blockBlob`, `appendBlob`) and `prefixMatch` (e.g., `container1/logs/2025`)
+- Azure Storage Reserved Capacity:
+	- 1-year or 3-year commitment for 100 TB or 1 PB blocks of Block Blob / ADLS Gen2 storage to significantly reduce storage capacity costs
 
 ### immutable storage
 - enables users to store business-critical data in a WORM (Write Once, Read Many) state
@@ -85,22 +90,22 @@ author: Pralaya Panta
 	- protects from overwrites and deletion
 	- applied at container level with audit logs
 - no extra capacity charge for using immutable storage
-	- creating or deleting a time-based retention policy or legal hold on a blob version results in a write transaction charge. 
+	- creating or deleting a time-based retention policy or legal hold on a blob version results in a write transaction charge.
 - immutability policies
 	- time based retention policies
 		- objects can be created and read, but not modified or deleted for that time
-		- <u> after the retention period expires, objects can be deleted, but not overwritten</u>
+		- after the retention period expires, objects can be deleted, but not overwritten
 		- Hot, Cool, and Archive access tiers support immutable storage by using time-retention policies.
 		- min retention period - 1 day; max retention period - 400 yrs
 		- effective retention policy
 			- $\text{Retention Exp Date} = \text{Blob Creation Time} + \text{User-Specified Retention Interval}$
 		- locked versus unlocked policies
 			- by default the policy is created in unlocked state for testing purposes
-			- can lock the policy so that it's fully compliant 
+			- can lock the policy so that it's fully compliant
 			- both locked and unlocked policies protect against deletes and overwrites
 			- unlocked policy
 				- can modify an unlocked policy by shortening or extending the retention period
-				-  can also delete
+				- can also delete
 			- locked policy
 				- can't delete a locked time-based retention policy
 				- can extend the retention period, but you can't decrease it
@@ -111,11 +116,11 @@ author: Pralaya Panta
 		- Premium Blob Storage uses legal holds to support immutable storage
 - features WORM
 	- container level
-		-  allows to set policies at the container level only
-		-  can't configure individual blobs with their own immutability policies
+		- allows to set policies at the container level only
+		- can't configure individual blobs with their own immutability policies
 	- version level
-		-  allows to set policies at the account, container, or version level
-		- **If there's a legal hold on a container,** 
+		- allows to set policies at the account, container, or version level
+		- If there's a legal hold on a container,
 			- you can't create version-level WORM for the same container
 			- as legal hold prevents generating the versions
 		- If using version-level WORM, the bill might be higher because you enabled versioning, and there's a cost associated with extra versions being stored.
@@ -165,29 +170,29 @@ author: Pralaya Panta
 		- might not be available in all regions.
 	- Premium SSD v2
 		- best for: Production enterprise workloads that require high performance but have variable capacity-to-performance ratios
-		- lets you separately provision disk size, IOPS, and throughput required 
+		- lets you separately provision disk size, IOPS, and throughput required
 		- higher performance & cost effective than Premium SSD
-		-  isn't available in all regions
+		- isn't available in all regions
 	- Premium SSD
 		- best for: production and performance-sensitive virtual machines.
 		- performance limits (IOPS and throughput) are strictly tied to the overall physical size of the provisioned disk
 		- available in all regions.
 	- Standard SSD
 		- Web servers, lightly used enterprise applications, and non-production (Dev/Test) env
-		- cost-effective SSD tier 
+		- cost-effective SSD tier
 	- Standard HDD
 		- best for: Backups, non-critical staging workloads, and infrequently accessed file directories
 		- backed by traditional magnetic hard disk drives (HDDs); lowest performance tier, but highly cost-efficient for heavy, sequential read/write operations.
 
 - encryption option
 	- azure disk encryption ADE
-		- guest OS-level encryption using **BitLocker (Windows)** or **DM-Crypt (Linux)** inside the VM (consumes guest VM CPU; cannot be combined with Encryption at Host on the same disk)
+		- guest OS-level encryption using BitLocker (Windows) or DM-Crypt (Linux) inside the VM (consumes guest VM CPU; cannot be combined with Encryption at Host on the same disk)
 		- if VHD is protected with ADE the disk image is accessible only by the VM that owns it
 	- server side encryption SSE
-		- enabled by default on **all** Managed Disks at the storage cluster level (encrypts data at rest using PMK or CMK; does not encrypt the VM host's temporary disk or OS/data disk caches)
+		- enabled by default on all Managed Disks at the storage cluster level (encrypts data at rest using PMK or CMK; does not encrypt the VM host's temporary disk or OS/data disk caches)
 		- known as encryption at rest or azure storage encryption
 	- encryption at host
-		- encrypts the VM's **Temporary Disk**, **Ephemeral OS Disk**, and **OS/Data disk caches** end-to-end on the Azure physical hypervisor host *before* data flows into Azure Storage (zero guest VM CPU penalty; works alongside SSE)
+		- encrypts the VM's Temporary Disk, Ephemeral OS Disk, and OS/Data disk caches end-to-end on the Azure physical hypervisor host before data flows into Azure Storage (zero guest VM CPU penalty; works alongside SSE)
 - data caching
 	- optimizes read and write access to the virtual hard disk (VHD) files
 	- for OS disk default cache settings is ReadWrite
@@ -197,22 +202,22 @@ author: Pralaya Panta
 		- if OS disk the VM is restarted
 
 ## Azure NetApp Files (ANF)
-- enterprise-grade, bare-metal high-performance file storage 
-- SMB 2.1/3.x, `NFSv3`, NFSv4.1, or **Dual-Protocol SMB+NFS****
+- enterprise-grade, bare-metal high-performance file storage
+- SMB 2.1/3.x, `NFSv3`, NFSv4.1, or Dual-Protocol SMB+NFS
 - built-in data deduplication and compression
-- **4 Service Levels (Performance Tiers — based on provisioned TiB capacity):**
-	- **Standard:** **16 MiB/s** throughput per provisioned TiB
-	- **Premium:** **64 MiB/s** throughput per provisioned TiB
-	- **Ultra:** **128 MiB/s** throughput per provisioned TiB
-	- **Flexible:** allows sizing throughput (`MiB/s`) **independently** from storage capacity (`TiB`)
+- 4 Service Levels (Performance Tiers — based on provisioned TiB capacity):
+	- Standard: 16 MiB/s throughput per provisioned TiB
+	- Premium: 64 MiB/s throughput per provisioned TiB
+	- Ultra: 128 MiB/s throughput per provisioned TiB
+	- Flexible: allows sizing throughput (`MiB/s`) independently from storage capacity (`TiB`)
 
-- Dynamic Tiering: 
+- Dynamic Tiering:
 	- volumes can be moved dynamically between Capacity Pools of different Service Levels online with zero downtime
 - Data Protection & Replication:
 	- instant space-efficient Snapshots and Azure NetApp Files Backup
 	- Cross-Region Replication (CRR) and Cross-Zone Replication (CZR) (asynchronous block-level replication via SnapMirror without consuming host VM CPU or VNet bandwidth)
-- When to recommend ANF over Azure Files: 
-	- ultra-low sub-millisecond latency workloads 
+- When to recommend ANF over Azure Files:
+	- ultra-low sub-millisecond latency workloads
 	- SAP HANA, Oracle, HPC, EDA, large enterprise AVD FSLogix profiles
 
 
@@ -220,25 +225,25 @@ author: Pralaya Panta
 
 - Shared Access Signatures (SAS)
 	- provides temporary, secure, and granular control over client access to specific resources without revealing your account keys
-	- **3 SAS Types:**
-		- **User Delegation SAS (Best Practice / Most Secure):** signed using **Microsoft Entra ID credentials** instead of the Storage Account key (supports Blob and ADLS Gen2; immune to storage account key compromise)
-		- **Service SAS:** signed with the Storage Account key; grants access to a single storage service (Blob, Queue, Table, or File)
-		- **Account SAS:** signed with the Storage Account key; grants access across one or more services and supports service-level operations (such as creating containers)
-	- **Stored Access Policy:**
-		- defines start time, expiry time, and permissions on the container/share/queue/table server-side so you can **revoke or modify a Service SAS immediately** without rotating the entire Storage Account key
-- **Blob Data Protection Quartet:**
-	- **Blob Soft Delete:** retains deleted blobs, snapshots, and versions for **1–365 days**
-	- **Container Soft Delete:** retains accidentally deleted containers and their contents for **1–365 days**
-	- **Blob Versioning:** automatically saves a previous version of a blob on every write/overwrite
-	- **Point-in-Time Restore (PitR) for Block Blobs:** restores a subset or all block blobs in a storage account to their exact state at a specific timestamp within the retention window (**requires enabling Blob Versioning, Blob Change Feed, and Blob Soft Delete**)
+	- 3 SAS Types:
+		- User Delegation SAS (Best Practice / Most Secure): signed using Microsoft Entra ID credentials instead of the Storage Account key (supports Blob and ADLS Gen2; immune to storage account key compromise)
+		- Service SAS: signed with the Storage Account key; grants access to a single storage service (Blob, Queue, Table, or File)
+		- Account SAS: signed with the Storage Account key; grants access across one or more services and supports service-level operations (such as creating containers)
+	- Stored Access Policy:
+		- defines start time, expiry time, and permissions on the container/share/queue/table server-side so you can revoke or modify a Service SAS immediately without rotating the entire Storage Account key
+- Blob Data Protection Quartet:
+	- Blob Soft Delete: retains deleted blobs, snapshots, and versions for 1–365 days
+	- Container Soft Delete: retains accidentally deleted containers and their contents for 1–365 days
+	- Blob Versioning: automatically saves a previous version of a blob on every write/overwrite
+	- Point-in-Time Restore (PitR) for Block Blobs: restores a subset or all block blobs in a storage account to their exact state at a specific timestamp within the retention window (requires enabling Blob Versioning, Blob Change Feed, and Blob Soft Delete)
 - Firewalls & Network Rules
-	- Protects the public endpoint by restricting access to trusted IP ranges, individual IPs, or specified VNet subnets. 
+	- Protects the public endpoint by restricting access to trusted IP ranges, individual IPs, or specified VNet subnets.
 - Secure Transfer (HTTPS)
 	- Automatically rejects any non-secure (HTTP) connections. Microsoft recommends keeping this setting enabled for all storage accounts.
 	- The `Secure transfer required` property is enabled by default when an Azure storage account is created
 - Consider private endpoints
 	- a special network interface for an Azure service
-	-  provides secure connectivity between clients on your virtual network and your storage.
+	- provides secure connectivity between clients on your virtual network and your storage.
 
 ## Quick Link
 https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-storage-overview

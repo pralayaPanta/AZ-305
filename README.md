@@ -19,7 +19,7 @@ type: cert-guide
 
 - **Target Credential:** [Microsoft Certified: Azure Solutions Architect Expert](https://learn.microsoft.com/en-us/credentials/certifications/azure-solutions-architect/)
 - **Exam Code:** AZ-305
-- **Exam Result:** ✅ **Passed — 811 / 1000** (Oct 16, 2026 | Valid through Oct 16, 2027)
+- My **Exam Result:** ✅ **Passed — 811 / 1000** (Oct 16, 2026 )
 - **Prerequisites:** [AZ-104: Microsoft Azure Administrator](https://learn.microsoft.com/en-us/credentials/certifications/azure-administrator/)
 - **Passing Score:** 700 / 1000
 - **Question Format:** 40–60 questions (Case studies, multiple-choice, multi-select, drag-and-drop, hot-area)
@@ -44,10 +44,9 @@ type: cert-guide
 Comprehensive architectural reference notes organized strictly by official AZ-305 exam domains:
 
 ### 🏛️ Foundations & Architecture Strategy
-- [Architectural Foundations & High Availability](A%20-%20Introduction%20and%20Basic%20Concepts.md) — High availability principles, Availability Zones, Availability Sets, and foundational design concepts.
+- [A - Introduction and Basic Concepts](A%20-%20Introduction%20and%20Basic%20Concepts.md) — High availability (RTO/RPO, Availability Sets/Zones, Region Pairs, Sovereign Regions), Cloud Hosting, Compute Intro, Azure Hierarchy (Management Groups, Subscriptions, RGs, Tags), and Resource Locks.
 - [Azure Well-Architected Framework](Azure%20Well-Architected%20Framework.md) — The 5 WAF pillars: Reliability, Security, Cost Optimization, Operational Excellence, and Performance Efficiency.
 - [Master Study Plan](305-study-plan.md) — Detailed week-by-week syllabus, topic schedules, and architectural trade-off review guide.
-- [Curated Study Links](Study%20Links.md) — Microsoft Architecture Center decision trees, official exam sandboxes, and reference guides.
 - [AZ-305 NotebookLM Study Notebook](https://notebook.google.com/notebook/2c777205-dcdd-4cce-a869-8e3f84efb353?utm_source=gemini_notebook&utm_medium=referral&pli=1) — Interactive AI notebook and audio review source for AZ-305 architectural concepts.
 
 ### Domain 1: Design Identity, Governance & Monitoring (25–30%)
