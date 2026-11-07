@@ -88,7 +88,7 @@ Comprehensive architectural reference notes organized strictly by official AZ-30
 
 ---
 
-## 🎯 494-Question Interactive Practice Exam Suite
+## 🎯 494-Question Practice Exam Suite
 
 Nine full-length 50-question mock exams plus two 22-question enterprise case studies testing senior architectural decision-making. All questions feature interactive expandable answer toggles for active-recall self-testing.
 
