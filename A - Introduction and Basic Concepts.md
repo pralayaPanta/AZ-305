@@ -4,7 +4,7 @@ tags:
   - az-305
 title: A - Introduction and Basic Concepts
 author: Pralaya Panta
-updated: 2026-10-23
+created: 2026-10-13
 ---
 
 

@@ -4,7 +4,7 @@ tags:
   - az-305
 title: Identity - Conditional Access
 author: Pralaya Panta
-updated: 2026-10-23
+created: 2026-10-22
 ---
 
 ```table-of-contents

@@ -13,6 +13,9 @@ type: cert-guide
 
 > Complete study guide, domain breakdown, architectural notes, and 494-question practice examination suite for the **Microsoft Certified: Azure Solutions Architect Expert** certification.
 
+> [!NOTE]
+> The practice questions in `quiz/` are AI-generated study material for active recall. They are not official Microsoft exam items or brain dumps. Verify service limits and SLAs against [Microsoft Learn](https://learn.microsoft.com/en-us/credentials/certifications/exams/az-305/).
+
 ---
 
 ## 📌 Certification Overview
@@ -92,7 +95,7 @@ Comprehensive architectural reference notes organized strictly by official AZ-30
 
 Nine full-length 50-question mock exams plus two 22-question enterprise case studies testing senior architectural decision-making. All questions feature interactive expandable answer toggles for active-recall self-testing.
 
-- **[AZ-305 Quiz & Benchmark Tracker](quiz/az-305-quiz.md)** — Score log, test-taking strategy, and question bank navigation.
+- **[AZ-305 Quiz & Benchmark Tracker](quiz/az-305-quiz.md)** — Test-taking strategy, practice-test provider links, and question bank navigation.
 
 | Mock Exam | Question Count | Core Focus & Tested Topics |
 |---|:---:|---|
@@ -119,7 +122,7 @@ Nine full-length 50-question mock exams plus two 22-question enterprise case stu
 │ 1. READ       ──► Review domain notes for each architectural topic     │
 │ 2. EVALUATE   ──► Consult Azure Architecture Center decision guides    │
 │ 3. PRACTICE   ──► Run through Practice Sets 1–9 under timed conditions │
-│ 4. BENCHMARK  ──► Target 85%+ consistently across all 450 questions   │
+│ 4. BENCHMARK  ──► Target 85%+ consistently across all 494 questions   │
 └────────────────────────────────────────────────────────────────────────┘
 ```
 

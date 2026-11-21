@@ -4,7 +4,7 @@ tags:
   - az-305
 title: Business Continuity - Backup & Recovery
 author: Pralaya Panta
-updated: 2026-10-23
+created: 2026-10-13
 ---
 
 ```table-of-contents

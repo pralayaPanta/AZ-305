@@ -6,7 +6,7 @@ tags:
   - exam-prep
 title: AZ-305 — Quiz Sets & Practice Questions
 author: Pralaya Panta
-updated: 2026-10-23
+created: 2026-10-13
 ---
 
 # AZ-305 — Quiz Sets & Practice Questions
